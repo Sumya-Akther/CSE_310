@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div id="carouselExampleDark" class="carousel carousel-dark slide mb-5" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carouselExampleDark" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExampleDark" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+            <img src="{% static 'images/product-3-slider.webp' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'images/product-1-slider.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="{% static 'images/product-2-slider.webp' %}" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleDark" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleDark" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
+
+<!-- End of Carousel -->
+<h1 class="text-center my-4" style="color: grey; font-family: 'Cursive', sans-serif;">
+    TRENDING ITEMS
+</h1>
+
+<div class="container">
+    <div class="row gy-4">
+        {% for item in trending %}
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="card h-100">
+                <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.product.name }}">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-center">{{ item.product.name }}</h5>
+                    <p class="card-text text-center text-muted">{{ item.product.price }} BDT</p>
+                    <p class="card-text text-center text-warning">⭐ Average Rating: {{ item.avg_rating }}</p>
+                    <div class="mt-auto">
+                        <a href="{% url 'shop'  %}" class="btn btn-dark w-100">Go to shop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

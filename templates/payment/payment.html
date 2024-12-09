@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Initiate Payment</title>
+</head>
+<body>
+    <h1>Payment for Order #{{ payment.order.id }}</h1>
+    <p>Amount: ${{ payment.amount }}</p>
+    <p>Transaction ID: {{ payment.transaction_id }}</p>
+    <a href="{% url 'confirm_payment' payment.transaction_id %}">Confirm Payment</a>
+</body>
+</html>
